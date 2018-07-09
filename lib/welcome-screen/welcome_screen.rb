@@ -8,7 +8,7 @@ class WelcomeScreen
 
     GameBuilder.new(
       number_of_players: get_number_of_players_from_user,
-      board: Board.new(size: 3)
+      board: Board.new(size: get_board_size_from_user)
     ).build_game
   end
 
@@ -30,5 +30,13 @@ class WelcomeScreen
     end
 
     UserInputHandler.new(type: :number, prompt: prompt).input
+  end
+
+  def get_board_size_from_user
+    prompt = lambda do
+      puts 'Enter a number for the board size'
+    end
+
+    UserInputHandler.new(type: :number, prompt: prompt).input.to_i
   end
 end
